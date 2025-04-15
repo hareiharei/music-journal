@@ -2,6 +2,7 @@ import { Venue } from '@/modules/domain/Venue/Venue'
 import { Artist } from '@/modules/domain/Artist/Artist'
 import { SetList } from '@/modules/domain/LiveEvent/SetList'
 import { Photo } from '@/modules/domain/Photo/Photo'
+import { UUIDValueObject } from '../shared/UUIDValueObject'
 
 export class LiveEvent {
   constructor(
@@ -19,11 +20,7 @@ export class LiveEvent {
   ) {}
 }
 
-export class LiveEventID {
-  constructor(
-    public readonly value: string,
-  ) {}
-}
+export class LiveEventID extends UUIDValueObject {}
 
 export class LiveEventTitle {
   constructor(

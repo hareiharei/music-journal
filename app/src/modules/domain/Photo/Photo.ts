@@ -1,3 +1,5 @@
+import { UUIDValueObject } from "../shared/UUIDValueObject";
+
 export class Photo {
   constructor(
     public readonly id: PhotoId,
@@ -5,11 +7,7 @@ export class Photo {
   ) {}
 }
 
-export class PhotoId {
-  constructor(
-    public readonly value: string,
-  ) {}
-}
+export class PhotoId extends UUIDValueObject {}
 
 export class PhotoDescription {
   constructor(

@@ -1,4 +1,5 @@
 import { Song } from '@/modules/domain/Song/Song'
+import { UUIDValueObject } from '../shared/UUIDValueObject';
 
 export class SetList {
   constructor(
@@ -15,17 +16,9 @@ export class SetListSong {
   ) {}
 }
 
-export class SetListId {
-  constructor(
-    public readonly value: string,
-  ) {}
-}
+export class SetListId extends UUIDValueObject {}
 
-export class SetListSongId {
-  constructor(
-    public readonly value: string,
-  ) {}
-}
+export class SetListSongId extends UUIDValueObject {}
 
 export class SetListSongOrder {
   constructor(
