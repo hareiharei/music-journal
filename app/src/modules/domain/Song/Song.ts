@@ -8,26 +8,51 @@ export class Song {
   ) {}
 
   // TODO: ユーザーに入力された
+  static of(
+    title: string,
+    artists: Artist[],
+    spotifySongURL: string | null,
+  ) {
+    if (spotifySongURL === null || spotifySongURL === '') {
+      return new Song(
+        SongTitle.of(title),
+        artists,
+        null,
+      )
+    }
+    return new Song(
+      SongTitle.of(title),
+      artists,
+      SpotifySongURL.of(spotifySongURL),
+    )
+  }
 
   // TODO: ユーザーが指定した曲の情報から取得された
 }
 
 export class SongTitle {
-  constructor(
+  private constructor(
     public readonly value: string,
   ) {
-    // TODO: 空文字を許容しない
+    if (value === '') throw new Error('Song Title should nor be an empty string')
   }
 
-  // TODO: ユーザーに入力された
+  static of(value: string): SongTitle {
+    return new SongTitle(value)
+  }
 
   // TODO: ユーザーが指定した曲の情報から取得された
 }
 
 export class SpotifySongURL {
-  constructor(
+  private constructor(
     public readonly value: string,
-  ) {}
+  ) {
+    if (value === '') throw new Error('Spotify Song URL should not be an empty string')
+  }
   
   // TODO: ユーザーが指定した曲の情報から取得された
+  static of(value: string): SpotifySongURL {
+    return new SpotifySongURL(value)
+  }
 }
