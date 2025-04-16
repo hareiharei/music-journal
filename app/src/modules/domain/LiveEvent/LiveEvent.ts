@@ -37,6 +37,29 @@ export class LiveEvent extends LiveEventProps {
   }
   
   // TODO: 作成された
+  static create(
+    title: string,
+    date: Date,
+    startTime: string | null,
+    endTime: string | null,
+    detail: string | null,
+    venues: Venue[] | null,
+    artists: Artist[] | null,
+    photos: Photo[] | null,
+  ): LiveEvent {
+    return new LiveEvent(
+      LiveEventID.new(),
+      LiveEventTitle.of(title),
+      LiveEventDate.of(date),
+      startTime === null || startTime === '' ? null : LiveEventStartTime.of(startTime),
+      endTime   === null || endTime   === '' ? null : LiveEventEndTime.of(endTime),
+      detail    === null || detail    === '' ? null : LiveEventDetail.of(detail),
+      null,
+      venues?.length  === 0 ? null : venues,
+      artists?.length === 0 ? null : artists,
+      photos?.length  === 0 ? null: photos,
+    )
+  }
 
   // TODO: 編集された
 
