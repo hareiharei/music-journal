@@ -1,7 +1,7 @@
 import { Venue } from '@/modules/domain/Venue/Venue'
 import { Artist } from '@/modules/domain/Artist/Artist'
 import { UUIDValueObject } from '../shared/UUIDValueObject'
-import { isNullOrEmptyString } from '@/modules/util/check'
+import { isNullOrEmptyList, isNullOrEmptyString } from '@/modules/util/check'
 
 export class LiveEventProps {
   protected constructor(
@@ -49,8 +49,8 @@ export class LiveEvent extends LiveEventProps {
       isNullOrEmptyString(startTime) ? null : LiveEventStartTime.of(startTime),
       isNullOrEmptyString(endTime)   ? null : LiveEventEndTime.of(endTime),
       isNullOrEmptyString(detail)    ? null : LiveEventDetail.of(detail),
-      venues?.length  === 0 ? null : venues,
-      artists?.length === 0 ? null : artists,
+      isNullOrEmptyList(venues)      ? null : venues,
+      isNullOrEmptyList(artists)     ? null : artists,
     )
   }
 
@@ -71,8 +71,8 @@ export class LiveEvent extends LiveEventProps {
       isNullOrEmptyString(startTime) ? null : LiveEventStartTime.of(startTime),
       isNullOrEmptyString(endTime)   ? null : LiveEventEndTime.of(endTime),
       isNullOrEmptyString(detail)    ? null : LiveEventDetail.of(detail),
-      venues?.length  === 0 ? null : venues,
-      artists?.length === 0 ? null : artists,
+      isNullOrEmptyList(venues)      ? null : venues,
+      isNullOrEmptyList(artists)     ? null : artists,
     )
   }
 
