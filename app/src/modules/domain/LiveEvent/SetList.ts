@@ -4,7 +4,7 @@ import { LiveEventID } from './LiveEvent';
 
 export class SetList {
   private constructor(
-    public readonly id: SetListId,
+    public readonly id: SetListID,
     public readonly liveEventId: LiveEventID,
     public songs: SetListSong[],
   ) {
@@ -24,7 +24,7 @@ export class SetList {
 
 export class SetListSong {
   private constructor(
-    public readonly id: SetListSongId,
+    public readonly id: SetListSongID,
     public order: SetListSongOrder,
     public song: Song,
   ) {}
@@ -33,9 +33,9 @@ export class SetListSong {
   static of() {}
 }
 
-export class SetListId extends UUIDValueObject {}
+export class SetListID extends UUIDValueObject {}
 
-export class SetListSongId extends UUIDValueObject {}
+export class SetListSongID extends UUIDValueObject {}
 
 export class SetListSongOrder {
   private constructor(

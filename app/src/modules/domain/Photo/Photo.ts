@@ -2,7 +2,7 @@ import { UUIDValueObject } from "../shared/UUIDValueObject";
 
 export class Photo {
   private constructor(
-    public readonly id: PhotoId,
+    public readonly id: PhotoID,
     public description: PhotoDescription | null,
   ) {}
 
@@ -12,19 +12,19 @@ export class Photo {
   ): Photo {
     if (description === null) {
       return new Photo(
-        PhotoId.new(),
+        PhotoID.new(),
         null,
       )
     }
     
     return new Photo(
-      PhotoId.new(),
+      PhotoID.new(),
       PhotoDescription.of(description),
     )
   }
 }
 
-export class PhotoId extends UUIDValueObject {}
+export class PhotoID extends UUIDValueObject {}
 
 export class PhotoDescription {
   private constructor(
