@@ -45,7 +45,6 @@ export class SetList extends SetListProps {
     )
   }
 
-  // TODO: 削除された
   delete(): DeletedSetList {
     return DeletedSetList.of(
       this.id,
