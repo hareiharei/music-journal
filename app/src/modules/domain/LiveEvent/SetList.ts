@@ -5,7 +5,7 @@ import { LiveEventID } from './LiveEvent';
 export class SetList {
   private constructor(
     public readonly id: SetListID,
-    public readonly liveEventId: LiveEventID,
+    public readonly liveEventID: LiveEventID,
     public songs: SetListSong[],
   ) {
     if (songs.length === 0) throw new Error('Songs should not be an empty list')
