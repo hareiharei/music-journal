@@ -61,7 +61,7 @@ export class LiveEvent extends LiveEventProps {
     )
   }
 
-  // TODO: 編集された
+  // TODO: 編集された（null&空文字checkをrefactorしたい）
   edit(
     title: string,
     date: Date,
