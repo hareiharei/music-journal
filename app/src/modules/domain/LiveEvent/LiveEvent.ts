@@ -14,7 +14,6 @@ export class LiveEventProps {
     public review: LiveEventReview | null,
     public venues: Venue[] | null,
     public artists: Artist[] | null,
-    public photos: Photo[] | null,
   ) {}
 }
 
@@ -29,9 +28,8 @@ export class LiveEvent extends LiveEventProps {
     public review: LiveEventReview | null,
     public venues: Venue[] | null,
     public artists: Artist[] | null,
-    public photos: Photo[] | null,
   ) {
-    super(id, title, date, startTime, endTime, detail, review, venues, artists, photos)
+    super(id, title, date, startTime, endTime, detail, review, venues, artists)
 
     // TODO: startTimeはendTimeより前である
   }
@@ -45,7 +43,6 @@ export class LiveEvent extends LiveEventProps {
     detail: string | null,
     venues: Venue[] | null,
     artists: Artist[] | null,
-    photos: Photo[] | null,
   ): LiveEvent {
     return new LiveEvent(
       LiveEventID.new(),
@@ -57,7 +54,6 @@ export class LiveEvent extends LiveEventProps {
       null,
       venues?.length  === 0 ? null : venues,
       artists?.length === 0 ? null : artists,
-      photos?.length  === 0 ? null: photos,
     )
   }
 
@@ -71,7 +67,6 @@ export class LiveEvent extends LiveEventProps {
     review: string | null,
     venues: Venue[] | null,
     artists: Artist[] | null,
-    photos: Photo[] | null,
   ): LiveEvent {
     return new LiveEvent(
       this.id,
@@ -83,7 +78,6 @@ export class LiveEvent extends LiveEventProps {
       review    === null || review    === '' ? null : LiveEventReview.of(review),
       venues?.length  === 0 ? null : venues,
       artists?.length === 0 ? null : artists,
-      photos?.length  === 0 ? null: photos,
     )
   }
 
@@ -98,7 +92,6 @@ export class LiveEvent extends LiveEventProps {
       this.review,
       this.venues,
       this.artists,
-      this.photos,
     )
   }
 }
@@ -114,9 +107,8 @@ export class DeletedLiveEvent extends LiveEventProps {
     public review: LiveEventReview | null,
     public venues: Venue[] | null,
     public artists: Artist[] | null,
-    public photos: Photo[] | null,
   ) {
-    super(id, title, date, startTime, endTime, detail, review, venues, artists, photos)
+    super(id, title, date, startTime, endTime, detail, review, venues, artists)
   }
 
   static of(
@@ -129,7 +121,6 @@ export class DeletedLiveEvent extends LiveEventProps {
     review: LiveEventReview | null,
     venues: Venue[] | null,
     artists: Artist[] | null,
-    photos: Photo[] | null,
   ): DeletedLiveEvent {
     return new DeletedLiveEvent(
       id,
@@ -141,7 +132,6 @@ export class DeletedLiveEvent extends LiveEventProps {
       review,
       venues,
       artists,
-      photos,
     )
   }
 }
