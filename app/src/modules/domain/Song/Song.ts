@@ -34,7 +34,7 @@ export class SongTitle {
   private constructor(
     public readonly value: string,
   ) {
-    if (value === '') throw new Error('Song Title should nor be an empty string')
+    if (value === '') throw new Error('Song Title should not be an empty string')
   }
 
   static of(value: string): SongTitle {
