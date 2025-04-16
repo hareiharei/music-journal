@@ -24,7 +24,17 @@ export class SetList {
     )
   }
 
-  // TODO: 編集された
+  edit(
+    id: SetListID,
+    liveEventID: LiveEventID,
+    songs: SetListSong[],
+  ): SetList {
+    return new SetList(
+      id,
+      liveEventID,
+      songs,
+    )
+  }
 
   // TODO: 削除された
 }
