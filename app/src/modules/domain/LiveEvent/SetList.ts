@@ -29,8 +29,16 @@ export class SetListSong {
     public song: Song,
   ) {}
 
-  // TODO: ユーザーから入力された
-  static of() {}
+  static of(
+    order: number,
+    song: Song,
+  ) {
+    return new SetListSong(
+      SetListSongID.new(),
+      SetListSongOrder.of(order),
+      song,
+    )
+  }
 }
 
 export class SetListID extends UUIDValueObject {}
