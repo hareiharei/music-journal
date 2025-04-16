@@ -1,6 +1,5 @@
 import { Venue } from '@/modules/domain/Venue/Venue'
 import { Artist } from '@/modules/domain/Artist/Artist'
-import { SetList } from '@/modules/domain/LiveEvent/SetList'
 import { Photo } from '@/modules/domain/Photo/Photo'
 import { UUIDValueObject } from '../shared/UUIDValueObject'
 
@@ -15,7 +14,6 @@ export class LiveEvent {
     public review: LiveEventReview | null,
     public venues: Venue[] | null,
     public artists: Artist[] | null,
-    public setList: SetList | null,
     public photos: Photo[] | null,
   ) {
     // TODO: startTimeはendTimeより前である
