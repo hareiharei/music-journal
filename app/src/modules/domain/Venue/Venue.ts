@@ -33,7 +33,6 @@ export class VenueName {
     // TODO: 文字列の長さの上限
   }
 
-  // TODO: ユーザーに入力された
   static of(value: string): VenueName {
     return new VenueName(value)
   }
