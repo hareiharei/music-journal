@@ -7,9 +7,7 @@ export class Photo {
   ) {}
 
   // TODO: 
-  static of(
-    description: string | null
-  ): Photo {
+  static of(): Photo {
     return new Photo(
       PhotoID.new(),
     )
