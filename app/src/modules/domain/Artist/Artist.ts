@@ -1,22 +1,39 @@
 export class Artist {
-  constructor(
+  private constructor(
     public readonly name: ArtistName,
     public readonly spotifyArtistURL: SpotifyArtistURL | null,
   ) {}
 
-  // TODO: ユーザーに入力された
+  static of(
+    name: string,
+    spotifyArtistURL: string | null
+  ): Artist {
+    if (spotifyArtistURL === null || spotifyArtistURL === '') {
+      return new Artist(
+        ArtistName.of(name),
+        null
+      )
+    }
+
+    return new Artist(
+      ArtistName.of(name),
+      SpotifyArtistURL.of(spotifyArtistURL)
+    )
+  }
 
   // TODO: ユーザーに指定された曲またはアーティストの情報から取得された
 }
 
 export class ArtistName {
-  constructor(
+  private constructor(
     public readonly value: string
   ) {
-    // TODO: 空文字を許容しない
+    if (value === '') throw new Error('Artist Name should not be an empty string')
   }
 
-  // TODO: ユーザーに入力された
+  static of(value: string): ArtistName {
+    return new ArtistName(value)
+  }
 
   // TODO: ユーザーに指定された曲またはアーティストの情報から取得された
 }
@@ -25,8 +42,10 @@ export class SpotifyArtistURL {
   constructor(
     public readonly value: string
   ) {
-    
-    // TODO: 空文字を許容しない
+    if (value === '') throw new Error('Spotify Artist URL should not be an empty string')
   }
   // TODO: ユーザーに指定された曲またはアーティストの情報から取得された
+  static of(value: string): SpotifyArtistURL {
+    return new SpotifyArtistURL(value)
+  }
 }
