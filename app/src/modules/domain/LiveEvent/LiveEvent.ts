@@ -1,6 +1,5 @@
 import { Venue } from '@/modules/domain/Venue/Venue'
 import { Artist } from '@/modules/domain/Artist/Artist'
-import { Photo } from '@/modules/domain/Photo/Photo'
 import { UUIDValueObject } from '../shared/UUIDValueObject'
 
 export class LiveEventProps {
