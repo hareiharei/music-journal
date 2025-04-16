@@ -4,6 +4,12 @@ export const isNullOrEmptyString = (
   return value === null || value === ''
 }
 
+export const isEmptyString = (
+  value: string
+) => {
+  return value === ''
+}
+
 export const isNullOrEmptyList = (
   value: any[] | null
 ) => {
