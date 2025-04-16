@@ -36,7 +36,7 @@ export class LiveEvent extends LiveEventProps {
     // TODO: startTimeはendTimeより前である
   }
   
-  // TODO: 作成された
+  // TODO: 作成された（null&空文字checkをrefactorしたい）
   static create(
     title: string,
     date: Date,
