@@ -87,7 +87,63 @@ export class LiveEvent extends LiveEventProps {
     )
   }
 
-  // TODO: 削除された
+  delete(): DeletedLiveEvent {
+    return DeletedLiveEvent.of(
+      this.id,
+      this.title,
+      this.date,
+      this.startTime,
+      this.endTime,
+      this.detail,
+      this.review,
+      this.venues,
+      this.artists,
+      this.photos,
+    )
+  }
+}
+
+export class DeletedLiveEvent extends LiveEventProps {
+  private constructor(
+    public readonly id: LiveEventID,
+    public title: LiveEventTitle,
+    public date: LiveEventDate,
+    public startTime: LiveEventStartTime | null,
+    public endTime: LiveEventEndTime | null,
+    public detail: LiveEventDetail | null,
+    public review: LiveEventReview | null,
+    public venues: Venue[] | null,
+    public artists: Artist[] | null,
+    public photos: Photo[] | null,
+  ) {
+    super(id, title, date, startTime, endTime, detail, review, venues, artists, photos)
+  }
+
+  static of(
+    id: LiveEventID,
+    title: LiveEventTitle,
+    date: LiveEventDate,
+    startTime: LiveEventStartTime | null,
+    endTime: LiveEventEndTime | null,
+    detail: LiveEventDetail | null,
+    review: LiveEventReview | null,
+    venues: Venue[] | null,
+    artists: Artist[] | null,
+    photos: Photo[] | null,
+  ): DeletedLiveEvent {
+    return new DeletedLiveEvent(
+      id,
+      title,
+      date,
+      startTime,
+      endTime,
+      detail,
+      review,
+      venues,
+      artists,
+      photos,
+    )
+  }
 }
 
 export class LiveEventID extends UUIDValueObject {}
