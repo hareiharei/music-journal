@@ -9,3 +9,9 @@ export const isNullOrEmptyList = (
 ) => {
   return value === null || value.length === 0
 }
+
+export const isEmptyList = (
+  value: any[]
+) => {
+  return value.length === 0
+}

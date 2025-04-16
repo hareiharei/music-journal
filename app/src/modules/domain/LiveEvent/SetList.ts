@@ -1,6 +1,7 @@
 import { Song } from '@/modules/domain/Song/Song'
 import { UUIDValueObject } from '../shared/UUIDValueObject';
 import { LiveEventID } from './LiveEvent';
+import { isEmptyList } from '@/modules/util/check';
 
 export class SetListProps {
   protected constructor(
@@ -18,7 +19,7 @@ export class SetList extends SetListProps {
   ) {
     super(id, liveEventID, songs)
 
-    if (songs.length === 0) throw new Error('Songs should not be an empty list')
+    if (isEmptyList(songs)) throw new Error('Songs should not be an empty list')
 
     // TODO: songsのorderが0以上で順番に連続して並んでいる
   }
