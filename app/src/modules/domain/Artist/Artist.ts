@@ -1,3 +1,5 @@
+import { isNullOrEmptyString } from "@/modules/util/check"
+
 export class Artist {
   private constructor(
     public readonly name: ArtistName,
@@ -8,16 +10,9 @@ export class Artist {
     name: string,
     spotifyArtistURL: string | null
   ): Artist {
-    if (spotifyArtistURL === null || spotifyArtistURL === '') {
-      return new Artist(
-        ArtistName.of(name),
-        null
-      )
-    }
-
     return new Artist(
       ArtistName.of(name),
-      SpotifyArtistURL.of(spotifyArtistURL)
+      isNullOrEmptyString(spotifyArtistURL) ? null : SpotifyArtistURL.of(spotifyArtistURL)
     )
   }
 

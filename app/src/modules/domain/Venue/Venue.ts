@@ -1,3 +1,5 @@
+import { isNullOrEmptyString } from "@/modules/util/check"
+
 export class Venue {
   private constructor(
     public readonly name: VenueName,
@@ -8,16 +10,9 @@ export class Venue {
     name: string,
     addressURL: string | null,
   ): Venue {
-    if (addressURL === null || addressURL === '') {
-      return new Venue(
-        VenueName.of(name),
-        null,
-      )
-    }
-
     return new Venue(
       VenueName.of(name),
-      VenueAddressURL.of(addressURL),
+      isNullOrEmptyString(addressURL) ? null : VenueAddressURL.of(addressURL),
     )
   }
 

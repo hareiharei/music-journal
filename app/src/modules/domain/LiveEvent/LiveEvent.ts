@@ -1,6 +1,7 @@
 import { Venue } from '@/modules/domain/Venue/Venue'
 import { Artist } from '@/modules/domain/Artist/Artist'
 import { UUIDValueObject } from '../shared/UUIDValueObject'
+import { isNullOrEmptyString } from '@/modules/util/check'
 
 export class LiveEventProps {
   protected constructor(
@@ -31,7 +32,7 @@ export class LiveEvent extends LiveEventProps {
     // TODO: startTimeはendTimeより前である
   }
   
-  // TODO: 作成された（null&空文字checkをrefactorしたい）
+  // TODO: 作成された
   static create(
     title: string,
     date: Date,
@@ -45,15 +46,15 @@ export class LiveEvent extends LiveEventProps {
       LiveEventID.new(),
       LiveEventTitle.of(title),
       LiveEventDate.of(date),
-      startTime === null || startTime === '' ? null : LiveEventStartTime.of(startTime),
-      endTime   === null || endTime   === '' ? null : LiveEventEndTime.of(endTime),
-      detail    === null || detail    === '' ? null : LiveEventDetail.of(detail),
+      isNullOrEmptyString(startTime) ? null : LiveEventStartTime.of(startTime),
+      isNullOrEmptyString(endTime)   ? null : LiveEventEndTime.of(endTime),
+      isNullOrEmptyString(detail)    ? null : LiveEventDetail.of(detail),
       venues?.length  === 0 ? null : venues,
       artists?.length === 0 ? null : artists,
     )
   }
 
-  // TODO: 編集された（null&空文字checkをrefactorしたい）
+  // TODO: 編集された
   edit(
     title: string,
     date: Date,
@@ -67,9 +68,9 @@ export class LiveEvent extends LiveEventProps {
       this.id,
       LiveEventTitle.of(title),
       LiveEventDate.of(date),
-      startTime === null || startTime === '' ? null : LiveEventStartTime.of(startTime),
-      endTime   === null || endTime   === '' ? null : LiveEventEndTime.of(endTime),
-      detail    === null || detail    === '' ? null : LiveEventDetail.of(detail),
+      isNullOrEmptyString(startTime) ? null : LiveEventStartTime.of(startTime),
+      isNullOrEmptyString(endTime)   ? null : LiveEventEndTime.of(endTime),
+      isNullOrEmptyString(detail)    ? null : LiveEventDetail.of(detail),
       venues?.length  === 0 ? null : venues,
       artists?.length === 0 ? null : artists,
     )

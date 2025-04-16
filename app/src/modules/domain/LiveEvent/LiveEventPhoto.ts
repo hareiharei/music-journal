@@ -1,6 +1,7 @@
 import { UUIDValueObject } from "../shared/UUIDValueObject";
 import { Photo } from "../Photo/Photo";
 import { LiveEventID } from "./LiveEvent";
+import { isNullOrEmptyString } from "@/modules/util/check";
 
 export class LiveEventPhotoProps {
   protected constructor(
@@ -28,19 +29,18 @@ export class LiveEventPhoto extends LiveEventPhotoProps {
     return new LiveEventPhoto(
       LiveEventPhotoID.new(),
       liveEventID,
-      description === null || description === '' ? null : PhotoDescription.of(description),
+      isNullOrEmptyString(description) ? null : PhotoDescription.of(description),
       photo,
     )
   }
 
-  // TODO: refactor null & empty string check
   updateDescription(
     description: string | null
   ): LiveEventPhoto {
     return new LiveEventPhoto(
       this.id,
       this.liveEventID,
-      description === '' || description === null ? null : PhotoDescription.of(description),
+      isNullOrEmptyString(description) ? null : PhotoDescription.of(description),
       this.photo,
     )
   }

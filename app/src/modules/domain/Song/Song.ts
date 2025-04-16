@@ -1,3 +1,4 @@
+import { isNullOrEmptyString } from "@/modules/util/check";
 import { Artist } from "../Artist/Artist";
 
 export class Song {
@@ -13,17 +14,10 @@ export class Song {
     artists: Artist[],
     spotifySongURL: string | null,
   ) {
-    if (spotifySongURL === null || spotifySongURL === '') {
-      return new Song(
-        SongTitle.of(title),
-        artists,
-        null,
-      )
-    }
     return new Song(
       SongTitle.of(title),
       artists,
-      SpotifySongURL.of(spotifySongURL),
+      isNullOrEmptyString(spotifySongURL) ? null : SpotifySongURL.of(spotifySongURL),
     )
   }
 
