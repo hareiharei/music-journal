@@ -31,63 +31,75 @@ export class LiveEvent {
 export class LiveEventID extends UUIDValueObject {}
 
 export class LiveEventTitle {
-  constructor(
+  private constructor(
     public readonly value: string,
   ) {
-    // TODO: 空文字を許容しない
+    if (value === '') throw new Error('Live Event Title should not be an empty string')
 
     // TODO: 文字列の長さの制限
   }
 
-  // TODO: ユーザーに入力された
+  static of(value: string): LiveEventTitle {
+    return new LiveEventTitle(value)
+  }
 }
 
 export class LiveEventDate {
-  constructor(
+  private constructor(
     public readonly value: Date,
   ) {}
 
-  // TODO: ユーザーに入力された
+  static of(value: Date) {
+    return new LiveEventDate(value)
+  }
 }
 
 export class LiveEventStartTime {
-  constructor(
+  private constructor(
     public readonly value: string,
   ) {
     // TODO: Time型のような値として扱える
   }
 
-  // TODO: ユーザーに入力された
+  static of(value: string): LiveEventStartTime {
+    return new LiveEventStartTime(value)
+  }
 }
 
 export class LiveEventEndTime {
-  constructor(
+  private constructor(
     public readonly value: string,
   ) {
     // TODO: TIme型のような値として扱える
   }
 
-  // TODO: ユーザーに入力された
+  static of(value: string): LiveEventEndTime {
+    return new LiveEventEndTime(value)
+  }
 }
 
 export class LiveEventDetail {
-  constructor(
+  private constructor(
     public readonly value: string,
   ) {
     // TODO: 文字列の長さの上限
   }
 
-  // TODO: ユーザーに入力された
+  static of(value: string): LiveEventDetail {
+    return new LiveEventDetail(value)
+  }
 }
 
 export class LiveEventReview {
-  constructor(
+  private constructor(
     public readonly value: string,
   ) {
     // TODO: 文字列の長さの上限
   }
 
-  // TODO: ユーザーに入力された
+  static of(value: string): LiveEventReview {
+    return new LiveEventReview(value)
+  }
 }
 
 
