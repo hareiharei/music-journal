@@ -3,8 +3,23 @@ import { Artist } from '@/modules/domain/Artist/Artist'
 import { Photo } from '@/modules/domain/Photo/Photo'
 import { UUIDValueObject } from '../shared/UUIDValueObject'
 
-export class LiveEvent {
-  constructor(
+export class LiveEventProps {
+  protected constructor(
+    public readonly id: LiveEventID,
+    public title: LiveEventTitle,
+    public date: LiveEventDate,
+    public startTime: LiveEventStartTime | null,
+    public endTime: LiveEventEndTime | null,
+    public detail: LiveEventDetail | null,
+    public review: LiveEventReview | null,
+    public venues: Venue[] | null,
+    public artists: Artist[] | null,
+    public photos: Photo[] | null,
+  ) {}
+}
+
+export class LiveEvent extends LiveEventProps {
+  private constructor(
     public readonly id: LiveEventID,
     public title: LiveEventTitle,
     public date: LiveEventDate,
@@ -16,6 +31,8 @@ export class LiveEvent {
     public artists: Artist[] | null,
     public photos: Photo[] | null,
   ) {
+    super(id, title, date, startTime, endTime, detail, review, venues, artists, photos)
+
     // TODO: startTimeはendTimeより前である
   }
   
