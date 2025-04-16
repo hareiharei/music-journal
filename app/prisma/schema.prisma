@@ -43,8 +43,8 @@ model LiveEvent {
   date            DateTime    @db.Date
   startTime       DateTime?   @db.Time
   endTime         DateTime?   @db.Time
-  detail          String
-  review          String
+  detail          String?
+  review          String?
   createdAt       DateTime    @db.Timestamptz() @default(now())
   updatedAt       DateTime    @db.Timestamptz() @updatedAt
   deletedAt       DateTime?   @db.Timestamptz()
