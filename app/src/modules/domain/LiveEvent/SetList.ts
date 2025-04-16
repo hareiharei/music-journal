@@ -8,14 +8,21 @@ export class SetList {
     public readonly liveEventId: LiveEventID,
     public songs: SetListSong[],
   ) {
-    // TODO: 空のリストを許容しない
     if (songs.length === 0) throw new Error('Songs should not be an empty list')
 
     // TODO: songsのorderが0以上で順番に連続して並んでいる
   }
   
-  // TODO: 作成された
-  static of() {}
+  static create(
+    liveEventID: LiveEventID,
+    songs: SetListSong[],
+  ) {
+    return new SetList(
+      SetListID.new(),
+      liveEventID,
+      songs,
+    )
+  }
 
   // TODO: 編集された
 
