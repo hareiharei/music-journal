@@ -10,7 +10,6 @@ export class LiveEventProps {
     public startTime: LiveEventStartTime | null,
     public endTime: LiveEventEndTime | null,
     public detail: LiveEventDetail | null,
-    public review: LiveEventReview | null,
     public venues: Venue[] | null,
     public artists: Artist[] | null,
   ) {}
@@ -24,11 +23,10 @@ export class LiveEvent extends LiveEventProps {
     public startTime: LiveEventStartTime | null,
     public endTime: LiveEventEndTime | null,
     public detail: LiveEventDetail | null,
-    public review: LiveEventReview | null,
     public venues: Venue[] | null,
     public artists: Artist[] | null,
   ) {
-    super(id, title, date, startTime, endTime, detail, review, venues, artists)
+    super(id, title, date, startTime, endTime, detail, venues, artists)
 
     // TODO: startTimeはendTimeより前である
   }
@@ -50,7 +48,6 @@ export class LiveEvent extends LiveEventProps {
       startTime === null || startTime === '' ? null : LiveEventStartTime.of(startTime),
       endTime   === null || endTime   === '' ? null : LiveEventEndTime.of(endTime),
       detail    === null || detail    === '' ? null : LiveEventDetail.of(detail),
-      null,
       venues?.length  === 0 ? null : venues,
       artists?.length === 0 ? null : artists,
     )
@@ -74,7 +71,6 @@ export class LiveEvent extends LiveEventProps {
       startTime === null || startTime === '' ? null : LiveEventStartTime.of(startTime),
       endTime   === null || endTime   === '' ? null : LiveEventEndTime.of(endTime),
       detail    === null || detail    === '' ? null : LiveEventDetail.of(detail),
-      review    === null || review    === '' ? null : LiveEventReview.of(review),
       venues?.length  === 0 ? null : venues,
       artists?.length === 0 ? null : artists,
     )
@@ -88,7 +84,6 @@ export class LiveEvent extends LiveEventProps {
       this.startTime,
       this.endTime,
       this.detail,
-      this.review,
       this.venues,
       this.artists,
     )
@@ -103,11 +98,10 @@ export class DeletedLiveEvent extends LiveEventProps {
     public startTime: LiveEventStartTime | null,
     public endTime: LiveEventEndTime | null,
     public detail: LiveEventDetail | null,
-    public review: LiveEventReview | null,
     public venues: Venue[] | null,
     public artists: Artist[] | null,
   ) {
-    super(id, title, date, startTime, endTime, detail, review, venues, artists)
+    super(id, title, date, startTime, endTime, detail, venues, artists)
   }
 
   static of(
@@ -117,7 +111,6 @@ export class DeletedLiveEvent extends LiveEventProps {
     startTime: LiveEventStartTime | null,
     endTime: LiveEventEndTime | null,
     detail: LiveEventDetail | null,
-    review: LiveEventReview | null,
     venues: Venue[] | null,
     artists: Artist[] | null,
   ): DeletedLiveEvent {
@@ -128,7 +121,6 @@ export class DeletedLiveEvent extends LiveEventProps {
       startTime,
       endTime,
       detail,
-      review,
       venues,
       artists,
     )
@@ -198,19 +190,3 @@ export class LiveEventDetail {
     return new LiveEventDetail(value)
   }
 }
-
-export class LiveEventReview {
-  private constructor(
-    public readonly value: string,
-  ) {
-    if (value  === '') throw new Error('Live Event Review should not be an empty string')
-
-    // TODO: 文字列の長さの上限
-  }
-
-  static of(value: string): LiveEventReview {
-    return new LiveEventReview(value)
-  }
-}
-
-
