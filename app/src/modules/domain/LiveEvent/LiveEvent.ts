@@ -54,7 +54,6 @@ export class LiveEvent extends LiveEventProps {
     )
   }
 
-  // TODO: 編集された
   edit(
     title: string,
     date: Date,
