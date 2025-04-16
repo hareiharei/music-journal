@@ -16,7 +16,7 @@ export class SetList {
   static create(
     liveEventID: LiveEventID,
     songs: SetListSong[],
-  ) {
+  ): SetList {
     return new SetList(
       SetListID.new(),
       liveEventID,
@@ -39,7 +39,7 @@ export class SetListSong {
   static of(
     order: number,
     song: Song,
-  ) {
+  ): SetListSong {
     return new SetListSong(
       SetListSongID.new(),
       SetListSongOrder.of(order),
