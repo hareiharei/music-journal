@@ -1,9 +1,11 @@
 import { UUIDValueObject } from "../shared/UUIDValueObject";
 import { Photo } from "../Photo/Photo";
+import { LiveEventID } from "./LiveEvent";
 
 export class LiveEventPhotoProps {
   protected constructor(
     public readonly id: LiveEventPhotoID,
+    public readonly liveEventID: LiveEventID,
     public description: PhotoDescription | null,
     public photo: Photo,
   ) {}
@@ -12,12 +14,24 @@ export class LiveEventPhotoProps {
 export class LiveEventPhoto extends LiveEventPhotoProps {
   private constructor(
     public readonly id: LiveEventPhotoID,
+    public readonly liveEventID: LiveEventID,
     public description: PhotoDescription | null,
     public photo: Photo,
   ) {
-    super(id, description, photo)
+    super(id, liveEventID, description, photo)
   }
-  static of() {}
+  static of(
+    liveEventID: LiveEventID,
+    description: string | null,
+    photo: Photo
+  ): LiveEventPhoto {
+    return new LiveEventPhoto(
+      LiveEventPhotoID.new(),
+      liveEventID,
+      description === null || description === '' ? null : PhotoDescription.of(description),
+      photo,
+    )
+  }
 
   // TODO: refactor null & empty string check
   updateDescription(
@@ -25,6 +39,7 @@ export class LiveEventPhoto extends LiveEventPhotoProps {
   ): LiveEventPhoto {
     return new LiveEventPhoto(
       this.id,
+      this.liveEventID,
       description === '' || description === null ? null : PhotoDescription.of(description),
       this.photo,
     )
@@ -33,6 +48,7 @@ export class LiveEventPhoto extends LiveEventPhotoProps {
   delete(): DeletedLiveEventPhoto {
     return DeletedLiveEventPhoto.of(
       this.id,
+      this.liveEventID,
       this.description,
       this.photo,
     )
@@ -42,18 +58,21 @@ export class LiveEventPhoto extends LiveEventPhotoProps {
 export class DeletedLiveEventPhoto extends LiveEventPhotoProps {
   private constructor(
     public readonly id: LiveEventPhotoID,
+    public readonly liveEventID: LiveEventID,
     public description: PhotoDescription | null,
     public photo: Photo,
   ) {
-    super(id, description, photo)
+    super(id, liveEventID, description, photo)
   }
   static of(
     id: LiveEventPhotoID,
+    liveEventID: LiveEventID,
     description: PhotoDescription | null,
     photo: Photo,
   ): DeletedLiveEventPhoto {
     return new DeletedLiveEventPhoto(
       id,
+      liveEventID,
       description,
       photo,
     )
