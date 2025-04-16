@@ -46,6 +46,35 @@ export class SetList extends SetListProps {
   }
 
   // TODO: 削除された
+  delete(): DeletedSetList {
+    return DeletedSetList.of(
+      this.id,
+      this.liveEventID,
+      this.songs,
+    )
+  }
+}
+
+export class DeletedSetList extends SetListProps {
+  private constructor(
+    public readonly id: SetListID,
+    public readonly liveEventID: LiveEventID,
+    public songs: SetListSong[],
+  ) {
+    super(id, liveEventID, songs)
+  }
+
+  static of(
+    id: SetListID,
+    liveEventID: LiveEventID,
+    songs: SetListSong[],
+  ): DeletedSetList {
+    return new DeletedSetList(
+      id,
+      liveEventID,
+      songs,
+    )
+  }
 }
 
 export class SetListSong {
