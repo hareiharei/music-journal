@@ -134,6 +134,8 @@ export class LiveEventReview {
   private constructor(
     public readonly value: string,
   ) {
+    if (value  === '') throw new Error('Live Event Review should not be an empty string')
+
     // TODO: 文字列の長さの上限
   }
 
