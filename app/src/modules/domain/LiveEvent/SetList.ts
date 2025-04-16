@@ -2,12 +2,22 @@ import { Song } from '@/modules/domain/Song/Song'
 import { UUIDValueObject } from '../shared/UUIDValueObject';
 import { LiveEventID } from './LiveEvent';
 
-export class SetList {
+export class SetListProps {
+  protected constructor(
+    public readonly id: SetListID,
+    public readonly liveEventID: LiveEventID,
+    public songs: SetListSong[],
+  ) {}
+}
+
+export class SetList extends SetListProps {
   private constructor(
     public readonly id: SetListID,
     public readonly liveEventID: LiveEventID,
     public songs: SetListSong[],
   ) {
+    super(id, liveEventID, songs)
+
     if (songs.length === 0) throw new Error('Songs should not be an empty list')
 
     // TODO: songsのorderが0以上で順番に連続して並んでいる
