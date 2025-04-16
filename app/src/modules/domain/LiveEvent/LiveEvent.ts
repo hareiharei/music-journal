@@ -1,7 +1,7 @@
 import { Venue } from '@/modules/domain/Venue/Venue'
 import { Artist } from '@/modules/domain/Artist/Artist'
 import { UUIDValueObject } from '../shared/UUIDValueObject'
-import { isNullOrEmptyList, isNullOrEmptyString } from '@/modules/util/check'
+import { isEmptyString, isNullOrEmptyList, isNullOrEmptyString } from '@/modules/util/check'
 
 export class LiveEventProps {
   protected constructor(
@@ -133,7 +133,7 @@ export class LiveEventTitle {
   private constructor(
     public readonly value: string,
   ) {
-    if (value === '') throw new Error('Live Event Title should not be an empty string')
+    if (isEmptyString(value)) throw new Error('Live Event Title should not be an empty string')
 
     // TODO: 文字列の長さの制限
   }
@@ -181,7 +181,7 @@ export class LiveEventDetail {
   private constructor(
     public readonly value: string,
   ) {
-    if (value  === '') throw new Error('Live Event Detail should not be an empty string')
+    if (isEmptyString(value)) throw new Error('Live Event Detail should not be an empty string')
 
     // TODO: 文字列の長さの上限
   }

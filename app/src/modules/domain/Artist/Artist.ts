@@ -1,4 +1,4 @@
-import { isNullOrEmptyString } from "@/modules/util/check"
+import { isEmptyString, isNullOrEmptyString } from "@/modules/util/check"
 
 export class Artist {
   private constructor(
@@ -23,7 +23,7 @@ export class ArtistName {
   private constructor(
     public readonly value: string
   ) {
-    if (value === '') throw new Error('Artist Name should not be an empty string')
+    if (isEmptyString(value)) throw new Error('Artist Name should not be an empty string')
   }
 
   static of(value: string): ArtistName {
@@ -37,7 +37,7 @@ export class SpotifyArtistURL {
   constructor(
     public readonly value: string
   ) {
-    if (value === '') throw new Error('Spotify Artist URL should not be an empty string')
+    if (isEmptyString(value)) throw new Error('Spotify Artist URL should not be an empty string')
   }
   // TODO: ユーザーに指定された曲またはアーティストの情報から取得された
   static of(value: string): SpotifyArtistURL {

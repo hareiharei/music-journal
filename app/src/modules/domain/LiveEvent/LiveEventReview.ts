@@ -1,3 +1,4 @@
+import { isEmptyString } from "@/modules/util/check"
 import { UUIDValueObject } from "../shared/UUIDValueObject"
 import { LiveEventID } from "./LiveEvent"
 
@@ -17,7 +18,7 @@ export class LiveEventReview extends LiveEventReviewProps {
   ) {
     super(id, liveEventID, value)
 
-    if (value  === '') throw new Error('Live Event Review should not be an empty string')
+    if (isEmptyString(value)) throw new Error('Live Event Review should not be an empty string')
 
     // TODO: 文字列の長さの上限
   }

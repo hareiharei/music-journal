@@ -1,4 +1,4 @@
-import { isNullOrEmptyString } from "@/modules/util/check"
+import { isEmptyString, isNullOrEmptyString } from "@/modules/util/check"
 
 export class Venue {
   private constructor(
@@ -23,7 +23,7 @@ export class VenueName {
   private constructor(
     public readonly value: string,
   ) {
-    if (value === '') throw new Error('Venue Name should not be an empty string')
+    if (isEmptyString(value)) throw new Error('Venue Name should not be an empty string')
 
     // TODO: 文字列の長さの上限
   }
@@ -39,7 +39,7 @@ export class VenueAddressURL {
   private constructor(
     public readonly value: string,
   ) {
-    if (value === '') throw new Error('Venue Address URL should not be an empty string')
+    if (isEmptyString(value)) throw new Error('Venue Address URL should not be an empty string')
   }
 
   static of(value: string): VenueAddressURL {
