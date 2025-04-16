@@ -1,8 +1,7 @@
-import { version as uuidVersion } from 'uuid'
-import { validate as uuidValidate } from 'uuid'
+import { version as uuidVersion, validate as uuidValidate, v4 as uuidv4 } from 'uuid'
 
 export class UUIDValueObject {
-  constructor(
+  protected constructor(
     public readonly value: string
   ) {
     if (!uuidValidate(value)) {
@@ -11,5 +10,13 @@ export class UUIDValueObject {
     if (uuidVersion(value) !== 4) {
       throw new Error(`Invalid UUID Version`)
     }
+  }
+
+  static new(): UUIDValueObject {
+    return new UUIDValueObject(uuidv4())
+  }
+
+  static of(value: string) {
+    return new UUIDValueObject(value)
   }
 }
