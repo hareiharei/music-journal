@@ -2,6 +2,7 @@ import { Venue } from '@/modules/domain/Venue/Venue'
 import { Artist } from '@/modules/domain/Artist/Artist'
 import { UUIDValueObject } from '../shared/UUIDValueObject'
 import { isEmptyString, isNullOrEmptyList, isNullOrEmptyString } from '@/modules/util/check'
+import { TimeValueObject } from '../shared/TimeValueObject'
 
 export class LiveEventProps {
   protected constructor(
@@ -29,7 +30,9 @@ export class LiveEvent extends LiveEventProps {
   ) {
     super(id, title, date, startTime, endTime, detail, venues, artists)
 
-    // TODO: startTimeはendTimeより前である
+    if (startTime && endTime?.isAfter(startTime)) {
+      throw new Error('endTime is before startTime')
+    }
   }
   
   // TODO: 作成された
@@ -152,11 +155,11 @@ export class LiveEventDate {
   }
 }
 
-export class LiveEventStartTime {
+export class LiveEventStartTime extends TimeValueObject {
   private constructor(
     public readonly value: string,
   ) {
-    // TODO: Time型のような値として扱える
+    super(value)
   }
 
   static of(value: string): LiveEventStartTime {
@@ -164,11 +167,11 @@ export class LiveEventStartTime {
   }
 }
 
-export class LiveEventEndTime {
+export class LiveEventEndTime extends TimeValueObject {
   private constructor(
     public readonly value: string,
   ) {
-    // TODO: TIme型のような値として扱える
+    super(value)
   }
 
   static of(value: string): LiveEventEndTime {
