@@ -60,7 +60,6 @@ export class LiveEvent extends LiveEventProps {
     startTime: string | null,
     endTime: string | null,
     detail: string | null,
-    review: string | null,
     venues: Venue[] | null,
     artists: Artist[] | null,
   ): LiveEvent {
