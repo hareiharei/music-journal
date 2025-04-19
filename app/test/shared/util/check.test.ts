@@ -1,4 +1,4 @@
-import { isNullOrEmptyString } from "@/shared/util/check"
+import { isEmptyString, isNullOrEmptyString } from "@/shared/util/check"
 
 describe('isNullOrEmptyString', () => {
   it('should return true when value is null', () => {
@@ -14,9 +14,17 @@ describe('isNullOrEmptyString', () => {
     expect(result).toBe(false)
   })
 })
-// test isEmptyString
-// should return true when value is an empty string
-// shuold return false when value is a non-empty string
+
+describe('isEmptyString', () => {
+  it('should return true when value is an empty string', () =>{
+    const result = isEmptyString('')
+    expect(result).toBe(true)
+  })
+  it('shuold return false when value is a non-empty string', () => {
+    const result = isEmptyString('t')
+    expect(result).toBe(false)
+  })
+})
 
 // test isNullOrEmptyList
 // should return true when value is null
