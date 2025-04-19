@@ -16,7 +16,7 @@ describe('isNullOrEmptyString', () => {
 })
 
 describe('isEmptyString', () => {
-  it('should return true when value is an empty string', () =>{
+  it('should return true when value is an empty string', () => {
     const result = isEmptyString('')
     expect(result).toBe(true)
   })
