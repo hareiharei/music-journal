@@ -21,7 +21,9 @@ export class SetList extends SetListProps {
 
     if (isEmptyList(songs)) throw new Error('Songs should not be an empty list')
 
-    // TODO: songsのorderが0以上で順番に連続して並んでいる
+    const sortedOrders: number[] = songs.map(song => song.order.value).sort((a, b) => a - b)
+    const isSquentialOrder: boolean = sortedOrders.every((value, index) => value === index)
+    if (!isSquentialOrder) throw new Error('Songs should be in sequential order')
   }
   
   static create(
@@ -106,7 +108,7 @@ export class SetListSongOrder {
   ) {
     if (value < 0) throw new Error('Set List Song Order shuold be greater than or equal to 0')
 
-    if (Number.isInteger(value)) throw new Error('Set List Song Order should be an integer')
+    if (!Number.isInteger(value)) throw new Error('Set List Song Order should be an integer')
   }
 
   static of(value: number): SetListSongOrder {
