@@ -1,5 +1,5 @@
-import { isEmptyString } from "@/modules/util/check"
-import { UUIDValueObject } from "../shared/UUIDValueObject"
+import { isEmptyString } from "@/shared/util/check"
+import { UUIDValueObject } from "../../../shared/domain/UUIDValueObject"
 import { LiveEventID } from "./LiveEvent"
 
 export class LiveEventReviewProps {

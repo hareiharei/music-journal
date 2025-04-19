@@ -1,4 +1,4 @@
-import { isEmptyString, isNullOrEmptyString } from "@/modules/util/check";
+import { isEmptyString, isNullOrEmptyString } from "@/shared/util/check";
 import { Artist } from "../Artist/Artist";
 
 export class Song {

@@ -1,7 +1,7 @@
-import { UUIDValueObject } from "../shared/UUIDValueObject";
+import { UUIDValueObject } from "../../../shared/domain/UUIDValueObject";
 import { Photo } from "../Photo/Photo";
 import { LiveEventID } from "./LiveEvent";
-import { isNullOrEmptyString } from "@/modules/util/check";
+import { isNullOrEmptyString } from "@/shared/util/check";
 
 export class LiveEventPhotoProps {
   protected constructor(

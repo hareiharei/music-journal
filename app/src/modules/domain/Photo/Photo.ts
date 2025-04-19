@@ -1,4 +1,4 @@
-import { UUIDValueObject } from "../shared/UUIDValueObject";
+import { UUIDValueObject } from "../../../shared/domain/UUIDValueObject";
 
 export class Photo {
   private constructor(

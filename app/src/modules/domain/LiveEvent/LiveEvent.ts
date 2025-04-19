@@ -1,8 +1,8 @@
 import { Venue } from '@/modules/domain/Venue/Venue'
 import { Artist } from '@/modules/domain/Artist/Artist'
-import { UUIDValueObject } from '../shared/UUIDValueObject'
-import { isEmptyString, isNullOrEmptyList, isNullOrEmptyString } from '@/modules/util/check'
-import { TimeValueObject } from '../shared/TimeValueObject'
+import { UUIDValueObject } from '../../../shared/domain/UUIDValueObject'
+import { isEmptyString, isNullOrEmptyList, isNullOrEmptyString } from '@/shared/util/check'
+import { TimeValueObject } from '../../../shared/domain/TimeValueObject'
 
 export class LiveEventProps {
   protected constructor(
@@ -35,7 +35,6 @@ export class LiveEvent extends LiveEventProps {
     }
   }
   
-  // TODO: 作成された
   static create(
     title: string,
     date: Date,
