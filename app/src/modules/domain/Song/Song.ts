@@ -2,7 +2,7 @@ import { isEmptyString, isNullOrEmptyString } from "@/shared/util/check";
 import { Artist } from "../Artist/Artist";
 
 export class Song {
-  constructor(
+  private constructor(
     public readonly title: SongTitle,
     public readonly artists: Artist[],
     public readonly spotifySongURL: SpotifySongURL | null,
