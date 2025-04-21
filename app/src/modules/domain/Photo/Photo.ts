@@ -12,6 +12,14 @@ export class Photo {
       PhotoID.new(),
     )
   }
+
+  static fromStore(
+    id: string
+  ): Photo {
+    return new Photo(
+      PhotoID.of(id)
+    )
+  }
 }
 
 export class PhotoID extends UUIDValueObject {}
