@@ -34,6 +34,20 @@ export class LiveEventPhoto extends LiveEventPhotoProps {
     )
   }
 
+  static fromStore(
+    id: string,
+    liveEventID: string,
+    description: string | null,
+    photo: Photo,
+  ): LiveEventPhoto {
+    return new LiveEventPhoto(
+      LiveEventPhotoID.of(id),
+      LiveEventID.of(liveEventID),
+      isNullOrEmptyString(description) ? null : PhotoDescription.of(description),
+      photo,
+    )
+  }
+
   updateDescription(
     description: string | null
   ): LiveEventPhoto {
