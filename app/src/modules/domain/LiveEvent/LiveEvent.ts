@@ -56,6 +56,28 @@ export class LiveEvent extends LiveEventProps {
     )
   }
 
+  static fromStore(
+    id: string,
+    title: string,
+    date: Date,
+    startTime: string | null,
+    endTime: string | null,
+    detail: string | null,
+    venues: Venue[] | null,
+    artists: Artist[] | null,
+  ): LiveEvent {
+    return new LiveEvent(
+      LiveEventID.of(id),
+      LiveEventTitle.of(title),
+      LiveEventDate.of(date),
+      isNullOrEmptyString(startTime) ? null : LiveEventStartTime.of(startTime),
+      isNullOrEmptyString(endTime)   ? null : LiveEventEndTime.of(endTime),
+      isNullOrEmptyString(detail)    ? null : LiveEventDetail.of(detail),
+      isNullOrEmptyList(venues)      ? null : venues,
+      isNullOrEmptyList(artists)     ? null : artists,
+    )
+  }
+
   edit(
     title: string,
     date: Date,
