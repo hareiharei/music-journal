@@ -96,6 +96,18 @@ export class SetListSong {
       song,
     )
   }
+
+  static fromStore(
+    id: string,
+    order: number,
+    song: Song,
+  ): SetListSong {
+    return new SetListSong(
+      SetListSongID.of(id),
+      SetListSongOrder.of(order),
+      song,
+    )
+  }
 }
 
 export class SetListID extends UUIDValueObject {}
