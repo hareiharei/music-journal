@@ -23,7 +23,7 @@ export class SetList extends SetListProps {
 
     const sortedOrders: number[] = songs.map(song => song.order.value).sort((a, b) => a - b)
     const isSequentialOrder: boolean = sortedOrders.every((value, index) => value === index)
-    if (!isSequentialOrder) throw new Error('Songs should be in sequential order')
+    if (!isSequentialOrder) throw new Error('Songs should be in sequential order starting from 0')
   }
   
   static create(
