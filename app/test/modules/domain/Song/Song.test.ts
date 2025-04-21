@@ -60,25 +60,25 @@ describe('SongTitle', () => {
     })
     it('should return error when value is an empty string', () => {
       expect(() =>
-        SongTitle.of('Song Title should not be an empty string')
-      ).toThrow()
+        SongTitle.of('')
+      ).toThrow('Song Title should not be an empty string')
     })
   })
 })
 
 describe('SpotifySongURL', () => {
   describe('of', () => {
-    it('should instantiate when value is a non-empty string'), () => {
+    it('should instantiate when value is a non-empty string', () => {
       const url = 'test/url'
       const spotifySongURL = SpotifySongURL.of(url)
 
       expect(spotifySongURL).toBeInstanceOf(SpotifySongURL)
       expect(spotifySongURL.value).toBe(url)
-    }
+    })
     it('should return error when value is an empty string', () => {
       expect(() =>
-        SpotifySongURL.of('Spotify Song URL should not be an empty string')
-      ).toThrow()
+        SpotifySongURL.of('')
+      ).toThrow('Spotify Song URL should not be an empty string')
     })
   })
 })
