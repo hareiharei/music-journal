@@ -34,6 +34,18 @@ export class LiveEventReview extends LiveEventReviewProps {
     )
   }
 
+  static fromStore(
+    id: string,
+    liveEventID: string,
+    value: string
+  ): LiveEventReview {
+    return new LiveEventReview(
+      LiveEventReviewID.of(id),
+      LiveEventID.of(liveEventID),
+      value,
+    )
+  }
+
   edit(
     value: string
   ): LiveEventReview {
