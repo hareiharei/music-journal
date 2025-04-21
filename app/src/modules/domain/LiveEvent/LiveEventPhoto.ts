@@ -1,7 +1,7 @@
-import { UUIDValueObject } from "../shared/UUIDValueObject";
+import { UUIDValueObject } from "../../../shared/domain/UUIDValueObject";
 import { Photo } from "../Photo/Photo";
 import { LiveEventID } from "./LiveEvent";
-import { isNullOrEmptyString } from "@/modules/util/check";
+import { isEmptyString, isNullOrEmptyString } from "@/shared/util/check";
 
 export class LiveEventPhotoProps {
   protected constructor(
@@ -29,6 +29,20 @@ export class LiveEventPhoto extends LiveEventPhotoProps {
     return new LiveEventPhoto(
       LiveEventPhotoID.new(),
       liveEventID,
+      isNullOrEmptyString(description) ? null : PhotoDescription.of(description),
+      photo,
+    )
+  }
+
+  static fromStore(
+    id: string,
+    liveEventID: string,
+    description: string | null,
+    photo: Photo,
+  ): LiveEventPhoto {
+    return new LiveEventPhoto(
+      LiveEventPhotoID.of(id),
+      LiveEventID.of(liveEventID),
       isNullOrEmptyString(description) ? null : PhotoDescription.of(description),
       photo,
     )
@@ -85,6 +99,8 @@ export class PhotoDescription {
   private constructor(
     public readonly value: string
   ) {
+    if(isEmptyString(value)) throw new Error('Photo Description should not be an empty string')
+    
     // TODO: 文字列の長さの上限
   }
 

@@ -1,4 +1,4 @@
-import { isEmptyString, isNullOrEmptyString } from "@/modules/util/check"
+import { isEmptyString, isNullOrEmptyString } from "@/shared/util/check"
 
 export class Artist {
   private constructor(
@@ -34,7 +34,7 @@ export class ArtistName {
 }
 
 export class SpotifyArtistURL {
-  constructor(
+  private constructor(
     public readonly value: string
   ) {
     if (isEmptyString(value)) throw new Error('Spotify Artist URL should not be an empty string')

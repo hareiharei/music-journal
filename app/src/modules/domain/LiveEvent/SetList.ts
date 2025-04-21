@@ -1,7 +1,7 @@
 import { Song } from '@/modules/domain/Song/Song'
-import { UUIDValueObject } from '../shared/UUIDValueObject';
+import { UUIDValueObject } from '../../../shared/domain/UUIDValueObject';
 import { LiveEventID } from './LiveEvent';
-import { isEmptyList } from '@/modules/util/check';
+import { isEmptyList } from '@/shared/util/check';
 
 export class SetListProps {
   protected constructor(
@@ -21,9 +21,8 @@ export class SetList extends SetListProps {
 
     if (isEmptyList(songs)) throw new Error('Songs should not be an empty list')
 
-    const sortedOrders: number[] = songs.map(song => song.order.value).sort((a, b) => a - b)
-    const isSquentialOrder: boolean = sortedOrders.every((value, index) => value === index)
-    if (!isSquentialOrder) throw new Error('Songs should be in sequential order')
+    const isSequentialOrder: boolean = songs.every((song, index) => song.order.value === index)
+    if (!isSequentialOrder) throw new Error('Songs should be in sequential order starting from 0')
   }
   
   static create(
@@ -37,13 +36,24 @@ export class SetList extends SetListProps {
     )
   }
 
+  static fromStore(
+    id: string,
+    liveEventID: string,
+    songs: SetListSong[],
+  ): SetList {
+    return new SetList(
+      SetListID.of(id),
+      LiveEventID.of(liveEventID),
+      songs,
+    )
+  }
+
   edit(
-    liveEventID: LiveEventID,
     songs: SetListSong[],
   ): SetList {
     return new SetList(
       this.id,
-      liveEventID,
+      this.liveEventID,
       songs,
     )
   }
@@ -96,6 +106,18 @@ export class SetListSong {
       song,
     )
   }
+
+  static fromStore(
+    id: string,
+    order: number,
+    song: Song,
+  ): SetListSong {
+    return new SetListSong(
+      SetListSongID.of(id),
+      SetListSongOrder.of(order),
+      song,
+    )
+  }
 }
 
 export class SetListID extends UUIDValueObject {}
@@ -106,7 +128,7 @@ export class SetListSongOrder {
   private constructor(
     public readonly value: number,
   ) {
-    if (value < 0) throw new Error('Set List Song Order shuold be greater than or equal to 0')
+    if (value < 0) throw new Error('Set List Song Order should be greater than or equal to 0')
 
     if (!Number.isInteger(value)) throw new Error('Set List Song Order should be an integer')
   }

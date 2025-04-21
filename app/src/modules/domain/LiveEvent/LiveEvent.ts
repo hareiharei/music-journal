@@ -1,8 +1,8 @@
 import { Venue } from '@/modules/domain/Venue/Venue'
 import { Artist } from '@/modules/domain/Artist/Artist'
-import { UUIDValueObject } from '../shared/UUIDValueObject'
-import { isEmptyString, isNullOrEmptyList, isNullOrEmptyString } from '@/modules/util/check'
-import { TimeValueObject } from '../shared/TimeValueObject'
+import { UUIDValueObject } from '../../../shared/domain/UUIDValueObject'
+import { isEmptyString, isNullOrEmptyList, isNullOrEmptyString } from '@/shared/util/check'
+import { TimeValueObject } from '../../../shared/domain/TimeValueObject'
 
 export class LiveEventProps {
   protected constructor(
@@ -30,12 +30,11 @@ export class LiveEvent extends LiveEventProps {
   ) {
     super(id, title, date, startTime, endTime, detail, venues, artists)
 
-    if (startTime && endTime?.isAfter(startTime)) {
+    if (startTime !== null && endTime !== null && endTime.isBefore(startTime)){
       throw new Error('endTime is before startTime')
     }
   }
   
-  // TODO: 作成された
   static create(
     title: string,
     date: Date,
@@ -47,6 +46,28 @@ export class LiveEvent extends LiveEventProps {
   ): LiveEvent {
     return new LiveEvent(
       LiveEventID.new(),
+      LiveEventTitle.of(title),
+      LiveEventDate.of(date),
+      isNullOrEmptyString(startTime) ? null : LiveEventStartTime.of(startTime),
+      isNullOrEmptyString(endTime)   ? null : LiveEventEndTime.of(endTime),
+      isNullOrEmptyString(detail)    ? null : LiveEventDetail.of(detail),
+      isNullOrEmptyList(venues)      ? null : venues,
+      isNullOrEmptyList(artists)     ? null : artists,
+    )
+  }
+
+  static fromStore(
+    id: string,
+    title: string,
+    date: Date,
+    startTime: string | null,
+    endTime: string | null,
+    detail: string | null,
+    venues: Venue[] | null,
+    artists: Artist[] | null,
+  ): LiveEvent {
+    return new LiveEvent(
+      LiveEventID.of(id),
       LiveEventTitle.of(title),
       LiveEventDate.of(date),
       isNullOrEmptyString(startTime) ? null : LiveEventStartTime.of(startTime),
