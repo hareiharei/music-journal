@@ -37,6 +37,18 @@ export class SetList extends SetListProps {
     )
   }
 
+  static fromStore(
+    id: string,
+    liveEventID: string,
+    songs: SetListSong[],
+  ): SetList {
+    return new SetList(
+      SetListID.of(id),
+      LiveEventID.of(liveEventID),
+      songs,
+    )
+  }
+
   edit(
     liveEventID: LiveEventID,
     songs: SetListSong[],
