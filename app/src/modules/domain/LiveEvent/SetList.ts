@@ -106,7 +106,7 @@ export class SetListSongOrder {
   private constructor(
     public readonly value: number,
   ) {
-    if (value < 0) throw new Error('Set List Song Order shuold be greater than or equal to 0')
+    if (value < 0) throw new Error('Set List Song Order should be greater than or equal to 0')
 
     if (!Number.isInteger(value)) throw new Error('Set List Song Order should be an integer')
   }
