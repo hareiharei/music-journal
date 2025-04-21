@@ -50,12 +50,11 @@ export class SetList extends SetListProps {
   }
 
   edit(
-    liveEventID: LiveEventID,
     songs: SetListSong[],
   ): SetList {
     return new SetList(
       this.id,
-      liveEventID,
+      this.liveEventID,
       songs,
     )
   }
