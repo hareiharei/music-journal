@@ -22,8 +22,8 @@ export class SetList extends SetListProps {
     if (isEmptyList(songs)) throw new Error('Songs should not be an empty list')
 
     const sortedOrders: number[] = songs.map(song => song.order.value).sort((a, b) => a - b)
-    const isSquentialOrder: boolean = sortedOrders.every((value, index) => value === index)
-    if (!isSquentialOrder) throw new Error('Songs should be in sequential order')
+    const isSequentialOrder: boolean = sortedOrders.every((value, index) => value === index)
+    if (!isSequentialOrder) throw new Error('Songs should be in sequential order')
   }
   
   static create(
