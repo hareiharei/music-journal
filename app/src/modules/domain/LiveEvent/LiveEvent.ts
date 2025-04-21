@@ -30,7 +30,7 @@ export class LiveEvent extends LiveEventProps {
   ) {
     super(id, title, date, startTime, endTime, detail, venues, artists)
 
-    if (startTime && endTime?.isAfter(startTime)) {
+    if (startTime !== null && endTime !== null && endTime.isBefore(startTime)){
       throw new Error('endTime is before startTime')
     }
   }
