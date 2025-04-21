@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid'
 describe('LiveEventPhoto', () => {
   describe('of', () => {
     it('should instantiate when description is a non-empty string', () => {
-      const liveEventID = LiveEventID.of(uuidv4())
+      const liveEventID = LiveEventID.new()
       const description = 'test_description'
       const photo = Photo.of()
       const liveEventPhoto = LiveEventPhoto.of(liveEventID, description, photo)
@@ -18,7 +18,7 @@ describe('LiveEventPhoto', () => {
       expect(liveEventPhoto.photo).toBe(photo)
     })
     it('should instantiate when description is null', () => {
-      const liveEventID = LiveEventID.of(uuidv4())
+      const liveEventID = LiveEventID.new()
       const description = null
       const photo = Photo.of()
       const liveEventPhoto = LiveEventPhoto.of(liveEventID, description, photo)
@@ -30,7 +30,7 @@ describe('LiveEventPhoto', () => {
       expect(liveEventPhoto.photo).toBe(photo)
     })
     it('should instantiate when description is an empty string', () => {
-      const liveEventID = LiveEventID.of(uuidv4())
+      const liveEventID = LiveEventID.new()
       const description = ''
       const photo = Photo.of()
       const liveEventPhoto = LiveEventPhoto.of(liveEventID, description, photo)
@@ -86,7 +86,7 @@ describe('LiveEventPhoto', () => {
   describe('updateDescription', () => {
     it('should update description when it is a non-empty string', () => {
       const liveEventPhoto = LiveEventPhoto.of(
-        LiveEventID.of(uuidv4()), 
+        LiveEventID.new(),
         'description', 
         Photo.of()
       )
@@ -105,7 +105,7 @@ describe('LiveEventPhoto', () => {
     })
     it('should update description when it is null', () => {
       const liveEventPhoto = LiveEventPhoto.of(
-        LiveEventID.of(uuidv4()), 
+        LiveEventID.new(),
         'description', 
         Photo.of()
       )
@@ -124,7 +124,7 @@ describe('LiveEventPhoto', () => {
     })
     it('should update description when it is an empty string', () => {
       const liveEventPhoto = LiveEventPhoto.of(
-        LiveEventID.of(uuidv4()), 
+        LiveEventID.new(),
         'description', 
         Photo.of()
       )
@@ -145,7 +145,7 @@ describe('LiveEventPhoto', () => {
   describe('delete', () => {
     it('should return DeletedLiveEventPhoto', () => {
       const liveEventPhoto = LiveEventPhoto.of(
-        LiveEventID.of(uuidv4()), 
+        LiveEventID.new(),
         'description', 
         Photo.of()
       )
@@ -167,8 +167,8 @@ describe('LiveEventPhoto', () => {
 describe('DeletedLiveEventPhoto', () => {
   describe('of', () => {
     it('should instantiate when description is PhotoDescription', () => {
-      const id = LiveEventPhotoID.of(uuidv4())
-      const liveEventID = LiveEventID.of(uuidv4())
+      const id = LiveEventPhotoID.new()
+      const liveEventID = LiveEventID.new()
       const description = PhotoDescription.of('test_description')
       const photo = Photo.of()
       const deletedLiveEventPhoto = DeletedLiveEventPhoto.of(
@@ -185,8 +185,8 @@ describe('DeletedLiveEventPhoto', () => {
       expect(deletedLiveEventPhoto.photo).toBe(photo)
     })
     it('should instantiate when description is null', () => {
-      const id = LiveEventPhotoID.of(uuidv4())
-      const liveEventID = LiveEventID.of(uuidv4())
+      const id = LiveEventPhotoID.new()
+      const liveEventID = LiveEventID.new()
       const description = null
       const photo = Photo.of()
       const deletedLiveEventPhoto = DeletedLiveEventPhoto.of(
