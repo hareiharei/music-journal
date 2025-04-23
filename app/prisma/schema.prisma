@@ -72,7 +72,7 @@ model LiveEventArtist {
   liveEventArtistId String    @db.Uuid @id
   liveEventId       String    @db.Uuid
   name              String
-  spotifyArtistUrl  String
+  spotifyArtistUrl  String?
   createdAt         DateTime  @db.Timestamptz() @default(now())
   updatedAt         DateTime  @db.Timestamptz() @updatedAt
   deletedAt         DateTime? @db.Timestamptz()
