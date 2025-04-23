@@ -53,7 +53,7 @@ model LiveEvent {
   liveEventVenue  LiveEventVenue[]
   liveEventArtist LiveEventArtist[]
   setList         SetList?
-  photo           Photo[]
+  liveEventPhoto  LiveEventPhoto[]
 }
 
 model LiveEventVenue {
@@ -105,14 +105,25 @@ model SetListSong {
   setList         SetList @relation(fields: [setListId], references: [setListId])
 }
 
-model Photo {
-  photoId         String      @db.Uuid @id
-  liveEventId     String      @db.Uuid
-  description     String
-  photoUrl        String
-  createdAt       DateTime    @db.Timestamptz() @default(now())
-  updatedAt       DateTime    @db.Timestamptz() @updatedAt
-  deletedAt       DateTime?   @db.Timestamptz()
+model LiveEventPhoto {
+  liveEventPhotoId  String      @db.Uuid @id
+  liveEventId       String      @db.Uuid
+  photoId           String      @db.Uuid
+  description       String
+  createdAt         DateTime    @db.Timestamptz() @default(now())
+  updatedAt         DateTime    @db.Timestamptz() @updatedAt
+  deletedAt         DateTime?   @db.Timestamptz()
 
-  liveEvent       LiveEvent   @relation(fields: [liveEventId], references: [liveEventId])
+  liveEvent         LiveEvent   @relation(fields: [liveEventId], references: [liveEventId])
+  photo             Photo       @relation(fields: [photoId], references: [photoId])
+}
+
+model Photo {
+  photoId           String      @db.Uuid @id
+  photoUrl          String
+  createdAt         DateTime    @db.Timestamptz() @default(now())
+  updatedAt         DateTime    @db.Timestamptz() @updatedAt
+  deletedAt         DateTime?   @db.Timestamptz()
+
+  liveEventPhoto    LiveEventPhoto[]
 }
