@@ -79,6 +79,7 @@ model LiveEventArtist {
   deletedAt         DateTime? @db.Timestamptz()
 
   liveEvent         LiveEvent @relation(fields: [liveEventId], references: [liveEventId])
+  @@unique([liveEventId, name, spotifyArtistUrl])
 }
 
 model SetList {
