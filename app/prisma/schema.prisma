@@ -60,7 +60,7 @@ model LiveEventVenue {
   liveEventVenueId  String    @db.Uuid @id
   liveEventId       String    @db.Uuid
   name              String
-  addressUrl        String
+  addressUrl        String?
   createdAt         DateTime  @db.Timestamptz() @default(now())
   updatedAt         DateTime  @db.Timestamptz() @updatedAt
   deletedAt         DateTime? @db.Timestamptz()
